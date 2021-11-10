@@ -26,7 +26,9 @@ public abstract class Entity : MonoBehaviour
         
     }
 
-    public abstract void OnHit();
+    public abstract void OnHit(int dmg);
+
+    public abstract void OnDeath();
 
     protected void Foward()
     {
