@@ -10,8 +10,9 @@ public abstract class Entity : MonoBehaviour
     [SerializeField] protected float moveSpeed;
     [SerializeField] protected int defense;
     [SerializeField] protected int attack;
+    protected Vector3 targetVelocity;
 
-
+    private Vector3 velocity = Vector3.zero;
 
     // Start is called before the first frame update
     void Start()
@@ -26,4 +27,36 @@ public abstract class Entity : MonoBehaviour
     }
 
     public abstract void OnHit();
+
+    protected void Foward()
+    {
+        float movement =  moveSpeed * Time.deltaTime;
+
+        targetVelocity = new Vector3(hitbox.velocity.x, hitbox.velocity.y, movement);
+        hitbox.velocity = Vector3.SmoothDamp(hitbox.velocity, targetVelocity, ref velocity, .05f);
+    }
+
+    protected void Backward()
+    {
+        float movement = moveSpeed * Time.deltaTime;
+
+        targetVelocity = new Vector3(hitbox.velocity.x, hitbox.velocity.y, -movement);
+        hitbox.velocity = Vector3.SmoothDamp(hitbox.velocity, targetVelocity, ref velocity, .05f);
+    }
+
+    protected void Left()
+    {
+        float movement = moveSpeed * Time.deltaTime;
+
+        targetVelocity = new Vector3(-movement, hitbox.velocity.y, hitbox.velocity.z);
+        hitbox.velocity = Vector3.SmoothDamp(hitbox.velocity, targetVelocity, ref velocity, .05f);
+    }
+
+    protected void Right()
+    {
+        float movement = moveSpeed * Time.deltaTime;
+
+        targetVelocity = new Vector3(movement, hitbox.velocity.y, hitbox.velocity.z);
+        hitbox.velocity = Vector3.SmoothDamp(hitbox.velocity, targetVelocity, ref velocity, .05f);
+    }
 }
