@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class Entity : MonoBehaviour
 {
     [SerializeField] protected Rigidbody hitbox;
-    [SerializeField] protected SpriteRenderer sprite;
+    [SerializeField] protected MeshRenderer meshRenderer;
     [SerializeField] protected int hp;
     [SerializeField] protected float moveSpeed;
     [SerializeField] protected int defense;
