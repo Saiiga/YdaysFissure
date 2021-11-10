@@ -42,5 +42,11 @@ namespace Assets.Script.Entities
         {
             //TODO Nothing for now; Death cinematic or other
         }
+
+        public bool CanUnlockDoor()
+        {
+            //TODO
+            return false;
+        }
     }
 }
