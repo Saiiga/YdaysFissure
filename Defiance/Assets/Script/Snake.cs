@@ -11,6 +11,11 @@ public class Snake : MonoBehaviour
     public Transform target;
     public float speed = 3f;
 
+    private void Start()
+    {
+        StartCoroutine(Spawn());
+    }
+
     void Update()
     {
        /* //Calcul de la prochaine position à aller
@@ -35,5 +40,10 @@ public class Snake : MonoBehaviour
     public void Move()
     {
 
+    }
+
+    IEnumerator Spawn()
+    {
+        yield return new WaitForSeconds(0);
     }
 }
