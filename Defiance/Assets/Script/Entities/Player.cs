@@ -34,6 +34,8 @@ namespace Assets.Script.Entities
         public override void OnHit(int _dmg)
         {
             hp -= Mathf.Abs(_dmg - defense);
+            if (hp == 0)
+                OnDeath();
         }
 
         public override void OnDeath()
