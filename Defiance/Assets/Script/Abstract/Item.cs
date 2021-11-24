@@ -15,5 +15,5 @@ public abstract class Item : MonoBehaviour
         meshRenderer = GetComponent<MeshRenderer>();
     }
 
-    public abstract void Action();
+    public abstract void Action(Player _player = null);
 }

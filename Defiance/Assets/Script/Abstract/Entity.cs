@@ -6,11 +6,11 @@ public abstract class Entity : MonoBehaviour
 {
     [SerializeField] protected Rigidbody hitbox;
     [SerializeField] protected MeshRenderer meshRenderer;
-    [SerializeField] protected int hp;
-    [SerializeField] protected float moveSpeed;
-    [SerializeField] protected int defense;
-    [SerializeField] protected int attack;
-    protected Vector3 targetVelocity;
+    [SerializeField] protected int hp { get; set; }
+    [SerializeField] protected float moveSpeed { get; set; }
+    [SerializeField] protected int defense { get; set; }
+    [SerializeField] protected int attack { get; set; }
+    protected Vector3 targetVelocity { get; set; }
 
     private Vector3 velocity = Vector3.zero;
 
@@ -60,5 +60,35 @@ public abstract class Entity : MonoBehaviour
 
         targetVelocity = new Vector3(movement, hitbox.velocity.y, hitbox.velocity.z);
         hitbox.velocity = Vector3.SmoothDamp(hitbox.velocity, targetVelocity, ref velocity, .05f);
+    }
+
+    public void AddHP(int _hp)
+    {
+        hp += _hp;
+    }
+
+    public void LooseHP(int _hp)
+    {
+        hp -= _hp;
+    }
+
+    public void AddMoveSpeed(float _ms)
+    {
+        moveSpeed += _ms;
+    }
+
+    public void LooseMoveSpeed(float _ms)
+    {
+        moveSpeed -= _ms;
+    }
+
+    public void AddDefense(int _def)
+    {
+        defense += _def;
+    }
+
+    public void LooseDefense(int _def)
+    {
+        defense -= _def;
     }
 }

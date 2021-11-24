@@ -1,11 +1,10 @@
-using Assets.Script.Entities;
 
 public class Gate : Item
 {
     private bool locked;
     private bool isOpen;
 
-    public override void Action()
+    public override void Action(Player _player)
     {
         OpenTheGate();
     }

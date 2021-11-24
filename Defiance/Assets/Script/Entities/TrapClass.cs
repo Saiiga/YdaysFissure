@@ -1,4 +1,3 @@
-using Assets.Script.Entities;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,15 +6,16 @@ public class TrapClass : Item
 {
     [SerializeField] private int damage;
 
-    public override void Action()
+    public override void Action(Player _player)
     {
+        _player.OnHit(damage);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            other.GetComponent<Player>().OnHit(damage);
+            Action(other.GetComponent<Player>());
         }
     }
 }
