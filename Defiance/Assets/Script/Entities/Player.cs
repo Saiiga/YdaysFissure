@@ -85,9 +85,7 @@ public class Player : Entity
         if(trap != null)
         {
             if(equipment != null && equipment.GetType() == typeof(Helmet) && other.CompareTag("CeilTrap"))
-            {
                 DestroyEquipment();
-            }
             else
                 LooseHP(trap.GetDamage());
 

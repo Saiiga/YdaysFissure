@@ -2,7 +2,7 @@
 using UnityEngine;
 
 
-public abstract class InstantBonus : Item
+public abstract class InstantBonus : Bonus
 {
     public override void Action(Player _players)
     {

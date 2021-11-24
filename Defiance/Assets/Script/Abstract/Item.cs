@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class Item : MonoBehaviour
 {
     [SerializeField] protected BoxCollider hitBox;
-    private MeshRenderer meshRenderer;
+    [SerializeField] protected MeshRenderer meshRenderer;
     [SerializeField] protected bool isTakable;
     [SerializeField] protected bool isActionnable = false;
 
