@@ -8,5 +8,7 @@ public  abstract class Bonus : Item
         isTakable = true;
     }
     public abstract void OnPickUp(Player _player = null);
+    //TODO Add on model
+
 
 }
