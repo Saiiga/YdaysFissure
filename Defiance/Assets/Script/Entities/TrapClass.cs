@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class TrapClass : Item
 {
-    [SerializeField] private int damage;
+    [SerializeField] private readonly int damage;
+    [SerializeField] private readonly string name;
+
 
     public override void Action(Player _player)
     {
@@ -18,4 +20,8 @@ public class TrapClass : Item
             Action(other.GetComponent<Player>());
         }
     }
+
+    public string GetName() { return name; }
+
+    public int GetDamage() { return damage; }
 }

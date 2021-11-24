@@ -56,4 +56,41 @@ public class Player : Entity
         equipment = _equipment;
         equipment.OnPickUp(this);
     }
+
+    public void DestroyEquipment()
+    {
+        if(equipment != null)
+        {
+            // TODO: add animation explosion
+            Destroy(equipment);
+            equipment = null;
+        }
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        Snake snake = other.GetComponent<Snake>();
+        TrapClass trap = other.GetComponent<TrapClass>();
+
+        if (snake != null)
+        {
+            if(equipment != null && equipment.GetType() != typeof(Armor))
+                DestroyEquipment();
+            else
+            {
+                // TODO: game over
+            }
+        }
+
+        if(trap != null)
+        {
+            if(equipment != null && equipment.GetType() == typeof(Helmet) && other.CompareTag("CeilTrap"))
+            {
+                DestroyEquipment();
+            }
+            else
+                LooseHP(trap.GetDamage());
+
+        }
+    }
 }
