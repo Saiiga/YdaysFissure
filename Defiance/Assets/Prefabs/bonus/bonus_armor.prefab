@@ -105,10 +105,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 5379805718947009271}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cd2db51256ec5f47ab8c7eeb8a5c29e, type: 3}
+  m_Script: {fileID: 11500000, guid: 7036d7e635f656c478835c7017591700, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   hitBox: {fileID: 5379805718947009268}
   meshRenderer: {fileID: 5379805718947009269}
   isTakable: 1
   isActionnable: 0
+  waitingTimeToPickAfterDrop: 3
+  canBePick: 1
