@@ -80,12 +80,10 @@ public class Player : Entity
 
         if (snake != null)
         {
-            if(equipment != null && equipment.GetType() != typeof(Armor))
+            if(equipment != null && equipment.GetType() == typeof(Armor))
                 DestroyEquipment();
             else
-            {
-                // TODO: game over
-            }
+                OnDeath();// TODO: game over
         }
 
         if(trap != null)

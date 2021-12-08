@@ -14,6 +14,10 @@ public abstract class Item : MonoBehaviour
         hitBox = GetComponent<BoxCollider>();
         meshRenderer = GetComponent<MeshRenderer>();
     }
+    public virtual void OnPickUp(Player _player)
+    {
+        meshRenderer.enabled = false;
+    }
 
     public abstract void Action(Player _player = null);
 }
