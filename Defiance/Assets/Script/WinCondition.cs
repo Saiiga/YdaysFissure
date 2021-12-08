@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WinCondition : MonoBehaviour
 {
-    private bool hasWin = false;
+    [SerializeField] private bool hasWin = false;
 
     private void OnTriggerEnter(Collider other)
     {
