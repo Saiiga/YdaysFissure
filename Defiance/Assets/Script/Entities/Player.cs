@@ -76,7 +76,7 @@ public class Player : Entity
     public void OnTriggerEnter(Collider other)
     {
         Snake snake = other.GetComponent<Snake>();
-        TrapClass trap = other.GetComponent<TrapClass>();
+        Trap trap = other.GetComponent<Trap>();
 
         if (snake != null)
         {
@@ -121,6 +121,14 @@ public class Player : Entity
         {
             targetVelocity = new Vector3(movement, hitbox.velocity.y, hitbox.velocity.z);
             hitbox.velocity = Vector3.SmoothDamp(hitbox.velocity, targetVelocity, ref velocity, .05f);
+        }
+        if (Input.GetKey(KeyCode.A))
+        {
+            transform.Rotate(Vector3.up * 50 * Time.deltaTime);
+        }
+        else if (Input.GetKey(KeyCode.E))
+        {
+            transform.Rotate(Vector3.down * 50 * Time.deltaTime);
         }
         animator.SetFloat("movementX", hitbox.velocity.x);
         animator.SetFloat("movementY", hitbox.velocity.y);

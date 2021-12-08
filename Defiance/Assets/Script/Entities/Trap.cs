@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TrapClass : Item
+public class Trap : Item
 {
     [SerializeField] private readonly int damage;
     [SerializeField] private readonly string name;
