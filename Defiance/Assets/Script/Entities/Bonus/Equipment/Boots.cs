@@ -12,12 +12,14 @@ public class Boots : Equipment
     public override void OnDrop(Player _player)
     {
         _player.LooseMoveSpeed(bonus);
+        meshRenderer.enabled = true;
         Debug.Log("add on model");
     }
 
     public override void OnPickUp(Player _player)
     {
         _player.AddMoveSpeed(bonus);
+        meshRenderer.enabled = false;
         Debug.Log("remove on model");
     }
 

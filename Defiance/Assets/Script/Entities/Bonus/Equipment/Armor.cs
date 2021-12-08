@@ -1,22 +1,24 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Helmet : Equipment
+public class Armor : Equipment
 {
     public override void Action(Player _player = null)
     {
-        // TODO: Handle on ceil trap
     }
 
     public override void OnDrop(Player _player = null)
     {
+        // TODO: add on model
         meshRenderer.enabled = true;
-        Debug.Log("remove on model");
+
     }
 
     public override void OnPickUp(Player _player = null)
     {
+        // TODO: remove on model
         meshRenderer.enabled = false;
-        Debug.Log("add on model");
+
     }
+
+
 }
