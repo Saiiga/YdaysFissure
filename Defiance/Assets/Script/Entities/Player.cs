@@ -8,6 +8,13 @@ public class Player : Entity
     [SerializeField] private IList<Item> items;
     [SerializeField] private Equipment equipment = null;
 
+    private Vector3 velocity = Vector3.zero;
+
+    public void FixedUpdate()
+    {
+        HandleMovement();
+    }
+
     public void AddItem(Item _item)
     {
         items.Add(_item);
@@ -90,5 +97,35 @@ public class Player : Entity
                 LooseHP(trap.GetDamage());
 
         }
+    }
+
+    private void HandleMovement()
+    {
+        float movement = moveSpeed * Time.deltaTime;
+
+        if (Input.GetKey(KeyCode.Z))
+        {
+            targetVelocity = new Vector3(hitbox.velocity.x, hitbox.velocity.y, movement);
+            hitbox.velocity = Vector3.SmoothDamp(hitbox.velocity, targetVelocity, ref velocity, .05f);
+        }
+        else if(Input.GetKey(KeyCode.S))
+        {
+            targetVelocity = new Vector3(hitbox.velocity.x, hitbox.velocity.y, -movement);
+            hitbox.velocity = Vector3.SmoothDamp(hitbox.velocity, targetVelocity, ref velocity, .05f);
+        }
+        if(Input.GetKey(KeyCode.Q))
+        {
+            targetVelocity = new Vector3(-movement, hitbox.velocity.y, hitbox.velocity.z);
+            hitbox.velocity = Vector3.SmoothDamp(hitbox.velocity, targetVelocity, ref velocity, .05f);
+        }
+        else if(Input.GetKey(KeyCode.D))
+        {
+            targetVelocity = new Vector3(movement, hitbox.velocity.y, hitbox.velocity.z);
+            hitbox.velocity = Vector3.SmoothDamp(hitbox.velocity, targetVelocity, ref velocity, .05f);
+        }
+        animator.SetFloat("movementX", hitbox.velocity.x);
+        animator.SetFloat("movementY", hitbox.velocity.y);
+        animator.SetFloat("movementZ", hitbox.velocity.z);
+
     }
 }

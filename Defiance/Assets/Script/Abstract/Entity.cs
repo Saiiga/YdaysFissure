@@ -6,11 +6,13 @@ public abstract class Entity : MonoBehaviour
 {
     [SerializeField] protected Rigidbody hitbox;
     [SerializeField] protected MeshRenderer meshRenderer;
-    [SerializeField] protected int hp { get; set; }
-    [SerializeField] protected float moveSpeed { get; set; }
-    [SerializeField] protected int defense { get; set; }
-    [SerializeField] protected int attack { get; set; }
-    protected Vector3 targetVelocity { get; set; }
+    [SerializeField] protected Animator animator;
+
+    [SerializeField] protected int hp;
+    [SerializeField] protected float moveSpeed;
+    [SerializeField] protected int defense;
+    [SerializeField] protected int attack;
+    protected Vector3 targetVelocity;
 
     private Vector3 velocity = Vector3.zero;
 
