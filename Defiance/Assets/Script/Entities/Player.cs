@@ -91,7 +91,7 @@ public class Player : Entity
             if(equipment != null && equipment.GetType() == typeof(Helmet) && other.CompareTag("CeilTrap"))
                 DestroyEquipment();
             else
-                LooseHP(trap.GetDamage());
+               trap.Action(this);
 
         }
     }
@@ -103,22 +103,22 @@ public class Player : Entity
         if (Input.GetKey(KeyCode.Z))
         {
             targetVelocity = new Vector3(hitbox.velocity.x, hitbox.velocity.y, movement);
-            hitbox.velocity = Vector3.SmoothDamp(hitbox.velocity, targetVelocity, ref velocity, .05f);
+            transform.Translate(Vector3.SmoothDamp(hitbox.velocity, targetVelocity, ref velocity, .05f), Space.Self);
         }
         else if(Input.GetKey(KeyCode.S))
         {
             targetVelocity = new Vector3(hitbox.velocity.x, hitbox.velocity.y, -movement);
-            hitbox.velocity = Vector3.SmoothDamp(hitbox.velocity, targetVelocity, ref velocity, .05f);
+            transform.Translate(Vector3.SmoothDamp(hitbox.velocity, targetVelocity, ref velocity, .05f), Space.Self);
         }
-        if(Input.GetKey(KeyCode.Q))
+        if (Input.GetKey(KeyCode.Q))
         {
             targetVelocity = new Vector3(-movement, hitbox.velocity.y, hitbox.velocity.z);
-            hitbox.velocity = Vector3.SmoothDamp(hitbox.velocity, targetVelocity, ref velocity, .05f);
+            transform.Translate(Vector3.SmoothDamp(hitbox.velocity, targetVelocity, ref velocity, .05f), Space.Self);
         }
         else if(Input.GetKey(KeyCode.D))
         {
             targetVelocity = new Vector3(movement, hitbox.velocity.y, hitbox.velocity.z);
-            hitbox.velocity = Vector3.SmoothDamp(hitbox.velocity, targetVelocity, ref velocity, .05f);
+            transform.Translate(Vector3.SmoothDamp(hitbox.velocity, targetVelocity, ref velocity, .05f), Space.Self);
         }
         if (Input.GetKey(KeyCode.A))
         {

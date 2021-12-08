@@ -11,14 +11,7 @@ public class Trap : Item
     public override void Action(Player _player)
     {
         _player.OnHit(damage);
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            Action(other.GetComponent<Player>());
-        }
+        Destroy(this);
     }
 
     public string GetName() { return name; }
