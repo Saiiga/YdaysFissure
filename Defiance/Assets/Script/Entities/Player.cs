@@ -61,7 +61,6 @@ public class Player : Entity
             equipment.OnDrop(this);
         
         equipment = _equipment;
-        equipment.OnPickUp(this);
     }
 
     public void DestroyEquipment()

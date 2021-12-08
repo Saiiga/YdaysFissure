@@ -7,7 +7,10 @@ public  abstract class Bonus : Item
     {
         isTakable = true;
     }
-    public abstract void OnPickUp(Player _player = null);
+    public virtual void OnPickUp(Player _player)
+    {
+        meshRenderer.enabled = false;
+    }
     //TODO Add on model
 
     public void OnTriggerEnter(Collider other)

@@ -4,9 +4,11 @@ using UnityEngine;
 
 public abstract class InstantBonus : Bonus
 {
-    public override void Action(Player _players)
-    {
-        throw new System.NotImplementedException();
-    }
 
+    public override void OnPickUp(Player _player)
+    {
+        Action(_player);
+        base.OnPickUp(_player);
+        Destroy(this);
+    }
 }
