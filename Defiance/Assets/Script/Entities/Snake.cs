@@ -7,72 +7,55 @@ public class Snake : MonoBehaviour
 {
     [SerializeField] private List<Transform> body;
 
-    [SerializeField] private List<Tuple<Vector3, Quaternion>> pos = new List<Tuple<Vector3, Quaternion>>();
+    [SerializeField] private List<Vector3> pos = new List<Vector3>();
 
-    public Transform target;
+    public Player target;
     public float speed = 3f;
 
     [SerializeField]private float timeToSpawn;
 
-    private Vector3 rotationToAdd;
     private Vector3 positionToAdd;
-    public Tuple<Vector3, Quaternion> transformToAdd;
 
     public void Start()
     {
         StartCoroutine(Spawn());
+        pos = target.GetLastPosition();
     }
 
-    void Update()
+    void FixedUpdate()
     {
-
-        //Calcul de la prochaine rotation à faire face
-        rotationToAdd = target.position;
-        rotationToAdd += new Vector3(0, -90, 0);
-        Quaternion quaternion = Quaternion.Euler(rotationToAdd.x, rotationToAdd.y, rotationToAdd.z);
-
-        //Calcul de la prochaine position à rejoindre
-        positionToAdd = new Vector3(speed * Time.deltaTime, 0, 0);
-        //Debug.Log(positionToAdd);
-
-
-        transformToAdd = new Tuple<Vector3, Quaternion> (positionToAdd, quaternion);
-
         //Enregistrement dans la liste
-        pos.Insert(0, transformToAdd);
-        if(pos.Count >= body.Count)
+        if(pos.Count > body.Count)
         {
-            pos.RemoveAt(body.Count);
-        }
-
-
-
-        if (transformToAdd != null)
-        {
-            //Mouvement de chaque 'body' avec sa pos -1
-            Move();
+            target.RemoveLastPosition();
         }
         //Si la tête (index 0) s'arrête, on arrête tout
+
+        Move();
     }
 
     public void Move()
     {
-        for(int i = 0; pos[i] != null ; i++)
+        for(int i = 0; i < pos.Count ; i++)
         {
             if(i == 0)
             {
-                body[i].transform.LookAt(target);
+                body[i].transform.LookAt(pos[i]);
+                if (Vector3.Distance(body[i].transform.position, pos[i]) > 20f)
+                {
+                    body[i].transform.Translate(new Vector3(0, 0, speed * Time.deltaTime));
+                }
             }
             else
             {
+                if (Vector3.Distance(body[i].transform.position, body[i-1].transform.position) > 7f)
+                {
+                    body[i].transform.Translate(new Vector3(0, 0, speed * Time.deltaTime));
+                }
                 body[i].transform.LookAt(body[i - 1]);
             }
-            body[i].transform.Rotate(new Vector3(0, -90, 0), Space.Self);
 
-            if (Vector3.Distance(body[i].transform.position, target.position) > 20f)
-            {
-                body[i].transform.Translate(new Vector3(speed * Time.deltaTime, 0, 0));
-            }
+            
         }
     }
 
