@@ -70,7 +70,7 @@ public class Player : Entity
     public void OnTriggerEnter(Collider other)
     {
         Snake snake = other.GetComponent<Snake>();
-        TrapClass trap = other.GetComponent<TrapClass>();
+        Trap trap = other.GetComponent<Trap>();
 
         if (snake != null)
         {
