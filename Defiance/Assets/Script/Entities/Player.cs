@@ -123,6 +123,14 @@ public class Player : Entity
             targetVelocity = new Vector3(movement, hitbox.velocity.y, hitbox.velocity.z);
             hitbox.velocity = Vector3.SmoothDamp(hitbox.velocity, targetVelocity, ref velocity, .05f);
         }
+        if (Input.GetKey(KeyCode.A))
+        {
+            transform.Rotate(Vector3.up * 50 * Time.deltaTime);
+        }
+        else if (Input.GetKey(KeyCode.E))
+        {
+            transform.Rotate(Vector3.down * 50 * Time.deltaTime);
+        }
         animator.SetFloat("movementX", hitbox.velocity.x);
         animator.SetFloat("movementY", hitbox.velocity.y);
         animator.SetFloat("movementZ", hitbox.velocity.z);
