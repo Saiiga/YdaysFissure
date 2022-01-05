@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Snake : MonoBehaviour
 {
@@ -15,10 +16,14 @@ public class Snake : MonoBehaviour
     [SerializeField]private float timeToSpawn;
 
     private Vector3 positionToAdd;
+    private Vector3 destination;
+    [SerializeField]
+    NavMeshAgent agent;
 
     public void Start()
     {
         StartCoroutine(Spawn());
+        //agent = GetComponent<NavMeshAgent>();
         pos = target.GetLastPosition();
     }
 
@@ -43,12 +48,13 @@ public class Snake : MonoBehaviour
                 body[i].transform.LookAt(pos[i]);
                 if (Vector3.Distance(body[i].transform.position, pos[i]) > 20f)
                 {
-                    body[i].transform.Translate(new Vector3(0, 0, speed * Time.deltaTime));
+                    //pos[i] += new Vector3(0, 0, speed * Time.deltaTime);
+                    agent.destination = pos[i];
                 }
             }
             else
             {
-                if (Vector3.Distance(body[i].transform.position, body[i-1].transform.position) > 7f)
+                if (Vector3.Distance(body[i].transform.position, body[i - 1].transform.position) > 7f)
                 {
                     body[i].transform.Translate(new Vector3(0, 0, speed * Time.deltaTime));
                 }
