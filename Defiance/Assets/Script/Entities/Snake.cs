@@ -49,6 +49,7 @@ public class Snake : MonoBehaviour
                 if (Vector3.Distance(body[i].transform.position, pos[i]) > 20f)
                 {
                     //pos[i] += new Vector3(0, 0, speed * Time.deltaTime);
+                    //pos[i] += new Vector3(0, 0, speed * Time.deltaTime);
                     agent.destination = pos[i];
                 }
             }
