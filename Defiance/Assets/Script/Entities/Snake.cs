@@ -46,7 +46,7 @@ public class Snake : MonoBehaviour
             if(i == 0)
             {
                 body[i].transform.LookAt(pos[i]);
-                if (Vector3.Distance(body[i].transform.position, pos[i]) > 20f)
+                if (Vector3.Distance(body[i].transform.position, pos[i]) > 1f)
                 {
                     //pos[i] += new Vector3(0, 0, speed * Time.deltaTime);
                     //pos[i] += new Vector3(0, 0, speed * Time.deltaTime);
@@ -55,7 +55,7 @@ public class Snake : MonoBehaviour
             }
             else
             {
-                if (Vector3.Distance(body[i].transform.position, body[i - 1].transform.position) > 40f)
+                if (Vector3.Distance(body[i].transform.position, body[i - 1].transform.position) > 0.35f)
                 {
                     body[i].transform.Translate(new Vector3(0, 0, speed * Time.deltaTime));
                 }
