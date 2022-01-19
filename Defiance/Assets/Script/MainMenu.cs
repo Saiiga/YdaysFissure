@@ -56,7 +56,8 @@ public class MainMenu : WinCondition
 
     public void Play()
     {
-        SceneManager.LoadScene("");
+        Debug.Log("Changement de Scène");
+        SceneManager.LoadScene("Zilba");
     }
 
     public void Quit()
