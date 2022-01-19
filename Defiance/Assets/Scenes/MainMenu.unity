@@ -1475,6 +1475,7 @@ MonoBehaviour:
   OnPause: 0
   pausePanel: {fileID: 99544899}
   winPanel: {fileID: 1619464200}
+  losePanel: {fileID: 423067328}
 --- !u!1 &1248677864
 GameObject:
   m_ObjectHideFlags: 0

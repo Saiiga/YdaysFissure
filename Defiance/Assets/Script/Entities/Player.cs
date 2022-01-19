@@ -8,6 +8,7 @@ public class Player : Entity
     [SerializeField] private List<Item> items = new List<Item>();
     [SerializeField] private Equipment equipment = null;
     [SerializeField] private List<Vector3> lastPositions = new List<Vector3>();
+    [SerializeField] private MainMenu mainMenu;
 
     private Vector3 VectorZero = Vector3.zero;
 
@@ -63,6 +64,8 @@ public class Player : Entity
 
     public override void OnDeath()
     {
+        mainMenu.losePanel.SetActive(true);
+        Time.timeScale = 0;
         //TODO Nothing for now; Death cinematic or other
     }
 

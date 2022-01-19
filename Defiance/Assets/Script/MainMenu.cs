@@ -11,6 +11,8 @@ public class MainMenu : WinCondition
     public GameObject pausePanel;
     [SerializeField]
     public GameObject winPanel;
+    [SerializeField]
+    public GameObject losePanel;
 
     private void FixedUpdate()
     {
@@ -41,6 +43,7 @@ public class MainMenu : WinCondition
     {
         Time.timeScale = 1;
         winPanel.SetActive(false);
+        losePanel.SetActive(false);
         SceneManager.LoadScene("MainMenu");
     }
 
