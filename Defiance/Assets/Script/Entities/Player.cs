@@ -9,6 +9,7 @@ public class Player : Entity
     [SerializeField] private Equipment equipment = null;
     [SerializeField] private List<Vector3> lastPositions = new List<Vector3>();
     [SerializeField] private MainMenu mainMenu;
+    [SerializeField] private bool isInvincible;
 
     private Vector3 VectorZero = Vector3.zero;
 
@@ -58,15 +59,53 @@ public class Player : Entity
     public override void OnHit(int _dmg)
     {
         hp -= Mathf.Abs(_dmg - defense);
+
+        if (!isInvincible)
+        {
+            hp -= Mathf.Abs(_dmg - defense);
+            isInvincible = true;
+            StartCoroutine(InvincibilityFlash());
+        }
+
         if (hp == 0)
+        {
             OnDeath();
+        }
+
+    }
+
+    public IEnumerator InvincibilityFlash()
+    {
+
+        yield return new WaitForSeconds(0.3f);
+        StartCoroutine(HandleInvincibilityDelay());
+        /*Color actualColor = spriteRenderer.color;
+        while (isInvincible)
+        {
+            spriteRenderer.color = new Color(actualColor.r, actualColor.g, actualColor.b, 0f);
+            yield return new WaitForSeconds(0.15f);
+            actualColor = spriteRenderer.color;
+            spriteRenderer.color = new Color(actualColor.r, actualColor.g, actualColor.b, 1f);
+            yield return new WaitForSeconds(0.15f);
+            actualColor = spriteRenderer.color;
+        }*/
+
+    }
+
+    public IEnumerator HandleInvincibilityDelay()
+    {
+
+
+        yield return new WaitForSeconds(3f);
+        isInvincible = false;
+
+
     }
 
     public override void OnDeath()
     {
         mainMenu.losePanel.SetActive(true);
         Time.timeScale = 0;
-        //TODO Nothing for now; Death cinematic or other
     }
 
     public void TryOpenGate(Gate _gate)
@@ -115,7 +154,7 @@ public class Player : Entity
             if(equipment != null && equipment.GetType() == typeof(Armor))
                 DestroyEquipment();
             else
-                OnDeath();// TODO: game over
+                OnDeath();
         }
 
         if(trap != null)
@@ -167,7 +206,6 @@ public class Player : Entity
         }
 
         SetAnimatorSpeed();
-        // animator.SetFloat("Speed", moveSpeed);
     }
 
     public void SetAnimatorSpeed()
@@ -187,7 +225,6 @@ public class Player : Entity
 
 
     }
-        // animator.SetFloat("Speed", 1);
 
     private IEnumerator WaitingBeforeAddLastPosition()
     {
