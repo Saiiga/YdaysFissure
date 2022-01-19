@@ -13,6 +13,7 @@ public class Player : Entity
 
     public void Start()
     {
+        animator.SetFloat("Speed", 0f);
         StartCoroutine(WaitingBeforeAddLastPosition());
     }
 
@@ -162,11 +163,28 @@ public class Player : Entity
             transform.Rotate(Vector3.down * 50 * Time.deltaTime);
         }
 
-        animator.SetFloat("movementX", hitbox.velocity.x);
-        animator.SetFloat("movementY", hitbox.velocity.y);
-        animator.SetFloat("movementZ", hitbox.velocity.z);
+        SetAnimatorSpeed();
+        // animator.SetFloat("Speed", moveSpeed);
+    }
+
+    public void SetAnimatorSpeed()
+    {
+        Debug.Log(animator.GetFloat("Speed"));
+
+       if(Mathf.Abs(hitbox.velocity.x) > 0.1f || Mathf.Abs(hitbox.velocity.z) > 0.1f)
+       {
+           animator.SetFloat("Speed", 1.0f);
+            Debug.Log("Speed Set");
+       }
+        else
+        {
+            animator.SetFloat("Speed", 0.0f);
+            Debug.Log("Speed UnSet");
+        }
+
 
     }
+        // animator.SetFloat("Speed", 1);
 
     private IEnumerator WaitingBeforeAddLastPosition()
     {
