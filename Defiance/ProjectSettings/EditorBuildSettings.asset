@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 1da2981e08e252146bebbb317b4e6ead
+  - enabled: 1
+    path: Assets/Scenes/Zilba.unity
+    guid: 7607a47185ff52d4abc0e98da2ddc49d
   m_configObjects: {}

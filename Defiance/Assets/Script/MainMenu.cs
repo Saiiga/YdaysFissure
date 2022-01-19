@@ -30,12 +30,12 @@ public class MainMenu : WinCondition
                 OnPause = false;
                 pausePanel.SetActive(false);
             }
+        }
 
-            if (hasWin)
-            {
-                Time.timeScale = 0;
-                winPanel.SetActive(true);
-            }
+        if (hasWin)
+        {
+            Time.timeScale = 0;
+            winPanel.SetActive(true);
         }
     }
 
