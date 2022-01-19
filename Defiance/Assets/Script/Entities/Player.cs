@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : Entity
 {
 
-    [SerializeField] private IList<Item> items;
+    [SerializeField] private List<Item> items = new List<Item>();
     [SerializeField] private Equipment equipment = null;
     [SerializeField] private List<Vector3> lastPositions = new List<Vector3>();
 
@@ -43,6 +43,16 @@ public class Player : Entity
         }
     }
 
+    public Item GetItem(string _name)
+    {
+        foreach(Item item in items)
+        {
+            if (item.tag.Contains(_name))
+                return item;
+        }
+        return null;
+    }
+
     public override void OnHit(int _dmg)
     {
         hp -= Mathf.Abs(_dmg - defense);
@@ -55,10 +65,21 @@ public class Player : Entity
         //TODO Nothing for now; Death cinematic or other
     }
 
-    public bool CanUnlockDoor()
+    public void TryOpenGate(Gate _gate)
     {
         //TODO
-        return false;
+        Item key = GetItem("key");
+        if(key != null)
+        {
+            _gate.OpenTheGate();
+            items.Remove(key);
+            Debug.Log("porte ouverte");
+        }
+        else
+        {
+            TextManager.ShowDialog("Je dois trouver la clé avant !", transform);
+            Debug.Log("porte fermé");
+        }
     }
 
     public void SetEquipment(Equipment _equipment)
@@ -83,6 +104,7 @@ public class Player : Entity
     {
         Snake snake = other.GetComponent<Snake>();
         Trap trap = other.GetComponent<Trap>();
+        Gate gate = other.GetComponent<Gate>();
 
         if (snake != null)
         {
@@ -99,6 +121,11 @@ public class Player : Entity
             else
                trap.Action(this);
 
+        }
+
+        if(gate != null)
+        {
+            TryOpenGate(gate);
         }
     }
 

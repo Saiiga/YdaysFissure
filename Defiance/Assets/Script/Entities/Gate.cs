@@ -1,8 +1,9 @@
-
+using UnityEngine;
 public class Gate : Item
 {
     private bool locked;
-    private bool isOpen;
+    private bool isOpenable;
+    [SerializeField] private Animator animator;
 
     public override void Action(Player _player)
     {
@@ -11,15 +12,15 @@ public class Gate : Item
 
     public void OpenTheGate()
     {
-        if(locked && !isOpen)
+        if(locked && !isOpenable)
         {
-
+            animator.Play("open");
         }
     }
 
-    public void UnlockDoor(Player _player)
+    public void UnlockDoor()
     {
-        if (_player.CanUnlockDoor())
-            locked = false;
+        locked = false;
+        OpenTheGate();
     }
 }
