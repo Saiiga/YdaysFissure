@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainMenu : MonoBehaviour
+public class MainMenu : WinCondition
 {
     [SerializeField]
     private bool OnPause;
     [SerializeField]
     public GameObject pausePanel;
+    [SerializeField]
+    public GameObject winPanel;
 
     private void FixedUpdate()
     {
@@ -26,7 +28,20 @@ public class MainMenu : MonoBehaviour
                 OnPause = false;
                 pausePanel.SetActive(false);
             }
+
+            if (hasWin)
+            {
+                Time.timeScale = 0;
+                winPanel.SetActive(true);
+            }
         }
+    }
+
+    public void ReturnToMenuAfterWin()
+    {
+        Time.timeScale = 1;
+        winPanel.SetActive(false);
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void Resume()
